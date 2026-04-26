@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createPayout } from '../api/client';
 
 function generateUUID() {
@@ -19,6 +19,13 @@ export default function PayoutForm({ merchantId, bankAccounts, availableBalance,
   const [bankAccountId, setBankAccountId] = useState(bankAccounts[0]?.id || '');
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState(null);
+
+  // Reset bank account selection when merchant changes
+  useEffect(() => {
+    setBankAccountId(bankAccounts[0]?.id || '');
+    setAmountRupees('');
+    setFeedback(null);
+  }, [merchantId, bankAccounts]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
