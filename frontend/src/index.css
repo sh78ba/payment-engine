@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+    color: #e9ecef;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(92, 124, 250, 0.3);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .status-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase;
+  }
+
+  .status-pending {
+    background: rgba(250, 176, 5, 0.15);
+    color: #fab005;
+    border: 1px solid rgba(250, 176, 5, 0.2);
+  }
+
+  .status-processing {
+    background: rgba(92, 124, 250, 0.15);
+    color: #748ffc;
+    border: 1px solid rgba(92, 124, 250, 0.2);
+    animation: pulseSoft 2s infinite;
+  }
+
+  .status-completed {
+    background: rgba(64, 192, 87, 0.15);
+    color: #40c057;
+    border: 1px solid rgba(64, 192, 87, 0.2);
+  }
+
+  .status-failed {
+    background: rgba(250, 82, 82, 0.15);
+    color: #fa5252;
+    border: 1px solid rgba(250, 82, 82, 0.2);
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e9ecef;
+    outline: none;
+  }
+
+  .input-field:focus {
+    border-color: rgba(92, 124, 250, 0.5);
+    box-shadow: 0 0 0 3px rgba(92, 124, 250, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .input-field::placeholder {
+    color: rgba(233, 236, 239, 0.35);
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200;
+    background: linear-gradient(135deg, #4c6ef5, #5c7cfa);
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4263eb, #4c6ef5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(76, 110, 245, 0.35);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
