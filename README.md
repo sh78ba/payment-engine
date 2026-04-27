@@ -104,6 +104,26 @@ python manage.py test tests.test_idempotency
 python manage.py test tests.test_state_machine
 ```
 
+## Production Deployment (Render / Railway)
+
+This project is configured to run smoothly on free-tier PaaS providers like [Render](https://render.com) or [Railway](https://railway.app).
+
+### Backend (Django + Celery)
+When deploying the `backend` directory as a Docker web service:
+1. The `backend/Dockerfile` is automatically configured to use `backend/start.sh` as the `CMD`.
+2. `start.sh` runs migrations, seeds the database, starts the Celery worker, starts the Celery beat scheduler, and serves the Django app via Gunicorn **all in a single container**.
+3. You must set the following environment variables on your provider:
+   - `DATABASE_URL`: Your PostgreSQL connection string
+   - `REDIS_URL`: Your Redis connection string
+   - `ALLOWED_HOSTS`: `*` (or your specific frontend domain)
+
+### Frontend (React)
+When deploying the `frontend` directory as a Static Site:
+1. Build command: `npm install && npm run build`
+2. Publish directory: `dist`
+3. You must set the following environment variable:
+   - `VITE_API_URL`: Your deployed backend URL (e.g., `https://your-backend.onrender.com/api/v1`)
+
 ## API Endpoints
 
 | Method | Endpoint | Description |
