@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE = '/api/v1';
+// Fallback to relative path for local dev (Vite proxy), but use env var in production
+const API_BASE = import.meta.env.VITE_API_URL || '/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE,
