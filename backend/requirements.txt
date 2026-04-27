@@ -6,3 +6,4 @@ celery==5.4.0
 redis==5.2.1
 django-celery-beat==2.7.0
 dj-database-url==2.3.0
+gunicorn==21.2.0
